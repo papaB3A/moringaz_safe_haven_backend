@@ -89,7 +89,8 @@ def login():
 
     # Generate a JWT token
     # access_token = create_access_token(identity=user.unique_id)
-    access_token = create_access_token(identity=f"{user.unique_id}", expires_delta=timedelta(seconds=20))
+    # access_token = create_access_token(identity=f"{user.unique_id}", expires_delta=timedelta(seconds=20))
+    access_token = create_access_token(identity=f"{user.unique_id}", expires_delta=timedelta(minutes=15))
 
     return jsonify({
         "message": "Login successful",
@@ -146,7 +147,8 @@ def signup():
         db.session.commit()
 
         # Generate JWT token
-        access_token = create_access_token(identity=new_user.unique_id, expires_delta=timedelta(days=1))
+        # access_token = create_access_token(identity=new_user.unique_id, expires_delta=timedelta(days=1))
+        access_token = create_access_token(identity=f"{user.unique_id}", expires_delta=timedelta(minutes=15))
 
         return jsonify({
             "message": "Signup successful",
